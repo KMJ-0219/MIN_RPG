@@ -1,0 +1,44 @@
+name: CustomRPG
+version: 1.0.0
+main: com.customrpg.plugin.CustomRPGPlugin
+api-version: 1.20
+author: YourName
+description: 커스텀 RPG 플러그인 - 몬스터, 장비, 스텟 시스템
+
+commands:
+  rpg:
+    description: RPG 메인 명령어
+    usage: /rpg <명령어>
+    permission: customrpg.use
+    aliases: [customrpg]
+  
+  customitem:
+    description: 커스텀 아이템 관리 명령어
+    usage: /customitem <명령어>
+    permission: customrpg.admin
+    aliases: [ci, citem]
+  
+  custommonster:
+    description: 커스텀 몬스터 관리 명령어
+    usage: /custommonster <명령어>
+    permission: customrpg.admin
+    aliases: [cm, cmonster]
+
+permissions:
+  customrpg.*:
+    description: 모든 CustomRPG 권한
+    children:
+      customrpg.use: true
+      customrpg.admin: true
+    default: op
+  
+  customrpg.use:
+    description: 기본 RPG 기능 사용
+    default: true
+  
+  customrpg.admin:
+    description: 관리자 기능 사용
+    default: op
+
+depend: []
+softdepend: [Vault, WorldGuard]

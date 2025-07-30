@@ -1,0 +1,152 @@
+# config.yml - 메인 설정 파일
+plugin-enabled: true
+rpg-world: "rpg_world"
+
+# 기본 설정
+settings:
+  auto-save-interval: 300 # 5분마다 자동 저장
+  max-stat-level: 100
+  stat-coin-per-level: 10
+
+# 워프 지점들
+warps:
+  spawn:
+    world: "world"
+    x: 0.0
+    y: 100.0
+    z: 0.0
+    yaw: 0.0
+    pitch: 0.0
+
+---
+# items.yml - 커스텀 아이템 설정 파일
+items:
+  example_sword:
+    name: "예시 검"
+    material: "DIAMOND_SWORD"
+    dropChance: 0.15
+    stats:
+      health: 10.0
+      damage: 8.0
+      speed: 2.0
+  
+  example_armor:
+    name: "예시 갑옷"
+    material: "DIAMOND_CHESTPLATE"
+    dropChance: 0.08
+    stats:
+      health: 20.0
+      defense: 15.0
+  
+  mining_pickaxe:
+    name: "채굴 곡괭이"
+    material: "DIAMOND_PICKAXE"
+    dropChance: 0.12
+    stats:
+      mining: 25.0
+      health: 5.0
+
+---
+# monsters.yml - 커스텀 몬스터 설정 파일
+monsters:
+  fire_zombie:
+    name: "화염 좀비"
+    entityType: "ZOMBIE"
+    baseHealth: 40.0
+    baseDamage: 6.0
+    minLevel: 1
+    maxLevel: 15
+    statCoinReward: 2
+    coinReward: 25
+    dropItems:
+      - "example_sword"
+      - "example_armor"
+    dropChances:
+      example_sword: 0.1
+      example_armor: 0.05
+  
+  ice_skeleton:
+    name: "얼음 스켈레톤"
+    entityType: "SKELETON"
+    baseHealth: 30.0
+    baseDamage: 5.0
+    minLevel: 5
+    maxLevel: 20
+    statCoinReward: 3
+    coinReward: 30
+    dropItems:
+      - "mining_pickaxe"
+    dropChances:
+      mining_pickaxe: 0.08
+  
+  boss_spider:
+    name: "거대 거미 보스"
+    entityType: "SPIDER"
+    baseHealth: 120.0
+    baseDamage: 12.0
+    minLevel: 10
+    maxLevel: 25
+    statCoinReward: 10
+    coinReward: 100
+    dropItems:
+      - "example_sword"
+      - "example_armor"
+      - "mining_pickaxe"
+    dropChances:
+      example_sword: 0.3
+      example_armor: 0.25
+      mining_pickaxe: 0.2
+
+# 스폰 지역 설정
+regions:
+  beginner_area:
+    corner1:
+      world: "rpg_world"
+      x: -50.0
+      y: 60.0
+      z: -50.0
+    corner2:
+      world: "rpg_world"
+      x: 50.0
+      y: 80.0
+      z: 50.0
+    minLevel: 1
+    maxLevel: 10
+    monsterIds:
+      - "fire_zombie"
+    maxMonstersPerRegion: 8
+  
+  intermediate_area:
+    corner1:
+      world: "rpg_world"
+      x: 100.0
+      y: 60.0
+      z: -100.0
+    corner2:
+      world: "rpg_world"
+      x: 200.0
+      y: 80.0
+      z: 100.0
+    minLevel: 8
+    maxLevel: 18
+    monsterIds:
+      - "fire_zombie"
+      - "ice_skeleton"
+    maxMonstersPerRegion: 12
+  
+  boss_area:
+    corner1:
+      world: "rpg_world"
+      x: -200.0
+      y: 50.0
+      z: -200.0
+    corner2:
+      world: "rpg_world"
+      x: -100.0
+      y: 90.0
+      z: -100.0
+    minLevel: 15
+    maxLevel: 25
+    monsterIds:
+      - "boss_spider"
+    maxMonstersPerRegion: 3
